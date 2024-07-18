@@ -1,0 +1,8 @@
+services:
+  php:
+    container_name: 5fcli-php
+    build: _docker/php
+    volumes:
+      - .:/var/www
+      - ./public:/var/www/public
+    restart: always

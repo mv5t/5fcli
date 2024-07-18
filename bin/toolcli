@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use ToolCli\Command\Demo\DemoArgumentCommand;
+use ToolCli\Command\Demo\DemoChoiceCommand;
+use ToolCli\Command\Demo\DemoCommand;
+use ToolCli\Command\Demo\DemoInputCommand;
+use ToolCli\Command\Git\Flow\GitFlowCommand;
+use ToolCli\Command\HelloCommand;
+
+$application = new Application();
+
+// ... register commands
+$application->add(new HelloCommand());
+$application->add(new GitFlowCommand());
+$application->add(new DemoCommand());
+$application->add(new DemoArgumentCommand());
+$application->add(new DemoInputCommand());
+$application->add(new DemoChoiceCommand());
+
+$application->run();
