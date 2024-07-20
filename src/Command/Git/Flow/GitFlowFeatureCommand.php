@@ -11,10 +11,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'git:flow',
+    name: 'git:flow:feature',
     description: 'Add a short description for your command',
+    aliases: ['g:f:f'],
 )]
-class GitFlowCommand extends Command
+class GitFlowFeatureCommand extends Command
 {
     public function __construct()
     {
@@ -33,13 +34,27 @@ class GitFlowCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $hasToInit = $io->confirm('Initialiser un git flow ?');
-        if ($hasToInit) {
-            exec('git flow init y');
-            $io->success('Git Flow initialisé !');
-            return Command::SUCCESS;
-        }
-        $io->warning('Rien a été modifié.');
+        $choice = $io->choice(
+            'Que voulez vous faire',
+            [
+                'n'=>'Nouvelle feature',
+                't'=>'Terminer une feature',
+                'p'=>'Publier une feature',
+                'r'=>'Récupérer une feature',
+                's'=>'Suivre une feature',
+            ]
+        );
+        $command = match ($choice) {
+            'n' => 'git flow feature start ',
+            't' => 'git flow feature finnish ',
+            'p' => 'git flow feature publish ',
+            'r' => 'git flow feature pull origin ',
+            's' => 'git flow feature track ',
+
+        };
+        $nom = $io->ask('Nom de la feature');
+        exec("$command $nom");
+        $io->success('Ok.');
         return Command::SUCCESS;
     }
 }
