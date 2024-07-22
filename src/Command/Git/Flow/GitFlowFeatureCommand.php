@@ -46,13 +46,14 @@ class GitFlowFeatureCommand extends Command
         );
         $command = match ($choice) {
             'n' => 'git flow feature start ',
-            't' => 'git flow feature finnish ',
+            't' => 'git flow feature finish ',
             'p' => 'git flow feature publish ',
             'r' => 'git flow feature pull origin ',
             's' => 'git flow feature track ',
 
         };
         $nom = $io->ask('Nom de la feature');
+        $output->writeln("Lancement de la commande: $command $nom");
         exec("$command $nom");
         $io->success('Ok.');
         return Command::SUCCESS;

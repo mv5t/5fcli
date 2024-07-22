@@ -13,6 +13,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand(
     name: 'git:flow',
     description: 'Add a short description for your command',
+    aliases: ['g:f'],
 )]
 class GitFlowCommand extends Command
 {
@@ -32,10 +33,12 @@ class GitFlowCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $output->write("<fg=cyan>Pus d'information </>");
+        $output->write('<fg=cyan;href=https://danielkummer.github.io/git-flow-cheatsheet/index.fr_FR.html>ICI</>');
         $io = new SymfonyStyle($input, $output);
         $hasToInit = $io->confirm('Initialiser un git flow ?');
         if ($hasToInit) {
-            exec('git flow init y');
+            exec('git flow init -d');
             $io->success('Git Flow initialisé !');
             return Command::SUCCESS;
         }
