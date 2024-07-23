@@ -10,6 +10,7 @@ use ToolCli\Command\Demo\DemoCommand;
 use ToolCli\Command\Demo\DemoInputCommand;
 use ToolCli\Command\Git\Flow\GitFlowCommand;
 use ToolCli\Command\Git\Flow\GitFlowFeatureCommand;
+use ToolCli\Command\Git\Flow\GitFlowReleaseCommand;
 use ToolCli\Command\HelloCommand;
 
 $application = new Application();
@@ -22,5 +23,6 @@ $application->add(new DemoArgumentCommand());
 $application->add(new DemoInputCommand());
 $application->add(new DemoChoiceCommand());
 $application->add(new GitFlowFeatureCommand());
+$application->add(new GitFlowReleaseCommand());
 
 $application->run();
