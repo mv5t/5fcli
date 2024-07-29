@@ -28,11 +28,11 @@ class GitFlowFeatureCommand extends Command
         $choice = $io->choice(
             'Que voulez vous faire',
             [
-                'n'=>'Nouvelle feature',
-                't'=>'Terminer une feature',
-                'p'=>'Publier une feature',
-                'r'=>'Récupérer une feature',
-                's'=>'Suivre une feature',
+                'n'=>'Nouvelle feature (création d\'une nouvelle branche depuis develop)',
+                't'=>'Terminer une feature (fusion avec la branche develop et suppression de la feature)',
+                'p'=>'Publier une feature (push la feature)',
+                's'=>'Suivre une feature (pull la feature)',
+                'r'=>'Récupérer une feature (déprécié)',
             ]
         );
         $command = match ($choice) {

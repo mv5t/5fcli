@@ -12,7 +12,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'git:flow:hotfix',
-    description: 'Gestion des releases du git flow',
+    description: 'Gestion des hotfix du git flow',
     aliases: ['g:f:h'],
 )]
 class GitFlowHotfixCommand extends Command
