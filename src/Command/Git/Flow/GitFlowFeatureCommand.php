@@ -46,7 +46,9 @@ class GitFlowFeatureCommand extends Command
         $nom = $io->ask('Nom de la feature');
         $output->writeln("Lancement de la commande: $command $nom");
         exec("$command $nom");
-        $io->success('Ok.');
+        if ($choice==='t') {
+            exec("git push");
+        }
         return Command::SUCCESS;
     }
 }

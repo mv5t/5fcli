@@ -51,9 +51,17 @@ class GitFlowReleaseCommand extends Command
 
         };
         $nom = $io->ask('Nom de la release');
+        if ($choice==='t') {
+            $message = $io->ask('Message de la release');
+            $command .= ' -m"'.$message.'"';
+        }
         $output->writeln("Lancement de la commande: $command $nom");
         exec("$command $nom");
-        $io->success('Ok.');
+
+        if ($choice==='t') {
+            exec("git push --tags");
+            exec("git push");
+        }
         return Command::SUCCESS;
     }
 }

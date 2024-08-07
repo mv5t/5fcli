@@ -47,9 +47,18 @@ class GitFlowHotfixCommand extends Command
 
         };
         $nom = $io->ask('Nom de la version');
+
+        if ($choice==='t') {
+            $message = $io->ask('Message du hotfix');
+            $command .= ' -m"'.$message.'"';
+        }
         $output->writeln("Lancement de la commande: $command $nom");
         exec("$command $nom");
-        $io->success('Ok.');
+
+        if ($choice==='t') {
+            exec("git push --tags");
+            exec("git push --all");
+        }
         return Command::SUCCESS;
     }
 }
