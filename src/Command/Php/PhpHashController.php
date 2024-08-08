@@ -10,11 +10,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'php:hash',
-    description: 'Outils PHP pour encoder un chaine de caractère',
+    description: 'Outil PHP pour encoder un chaine de caractère',
     aliases:['p:h'],
     hidden: false
 )]
-class PhpHashController extends \Symfony\Component\Console\Command\Command
+class PhpHashController extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
