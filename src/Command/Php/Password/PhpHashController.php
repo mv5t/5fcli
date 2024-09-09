@@ -1,6 +1,6 @@
 <?php
 
-namespace ToolCli\Command\Php;
+namespace ToolCli\Command\Php\Password;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -9,9 +9,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'php:hash',
+    name: 'php:password:hash',
     description: 'Outil PHP pour encoder un chaine de caractère',
-    aliases:['p:h'],
+    aliases:['p:p:h'],
     hidden: false
 )]
 class PhpHashController extends Command

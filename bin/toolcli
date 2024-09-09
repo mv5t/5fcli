@@ -13,7 +13,9 @@ use ToolCli\Command\Git\Flow\GitFlowFeatureCommand;
 use ToolCli\Command\Git\Flow\GitFlowHotfixCommand;
 use ToolCli\Command\Git\Flow\GitFlowReleaseCommand;
 use ToolCli\Command\HelloCommand;
-use ToolCli\Command\Php\PhpHashController;
+use ToolCli\Command\Php\Password\PhpHashController;
+use ToolCli\Command\Php\Password\PhpHashRevertController;
+use ToolCli\Command\Php\PhpUrlController;
 
 $application = new Application();
 
@@ -28,5 +30,7 @@ $application->add(new GitFlowFeatureCommand());
 $application->add(new GitFlowReleaseCommand());
 $application->add(new GitFlowHotfixCommand());
 $application->add(new PhpHashController());
+$application->add(new PhpHashRevertController());
+$application->add(new PhpUrlController());
 
 $application->run();
