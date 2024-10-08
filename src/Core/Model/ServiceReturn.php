@@ -1,6 +1,6 @@
 <?php
 
-namespace ToolCli\Model;
+namespace ToolCli\Core\Model;
 
 class ServiceReturn
 {

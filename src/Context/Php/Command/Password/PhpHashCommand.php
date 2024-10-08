@@ -1,6 +1,6 @@
 <?php
 
-namespace ToolCli\Command\Php\Password;
+namespace ToolCli\Context\Php\Command\Password;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -14,7 +14,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
     aliases:['p:p:h'],
     hidden: false
 )]
-class PhpHashController extends Command
+class PhpHashCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

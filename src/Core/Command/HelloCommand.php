@@ -1,6 +1,6 @@
 <?php
 
-namespace ToolCli\Command;
+namespace ToolCli\Core\Command;
 
 
 use Symfony\Component\Console\Attribute\AsCommand;

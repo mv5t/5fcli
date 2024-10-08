@@ -1,6 +1,6 @@
 <?php
 
-namespace ToolCli\Command\Php;
+namespace ToolCli\Context\Php\Command;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -14,7 +14,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
     aliases:['p:u'],
     hidden: false
 )]
-class PhpUrlController extends Command
+class PhpUrlCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

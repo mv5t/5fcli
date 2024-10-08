@@ -4,18 +4,19 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
-use ToolCli\Command\Demo\DemoArgumentCommand;
-use ToolCli\Command\Demo\DemoChoiceCommand;
-use ToolCli\Command\Demo\DemoCommand;
-use ToolCli\Command\Demo\DemoInputCommand;
-use ToolCli\Command\Git\Flow\GitFlowCommand;
-use ToolCli\Command\Git\Flow\GitFlowFeatureCommand;
-use ToolCli\Command\Git\Flow\GitFlowHotfixCommand;
-use ToolCli\Command\Git\Flow\GitFlowReleaseCommand;
-use ToolCli\Command\HelloCommand;
-use ToolCli\Command\Php\Password\PhpHashController;
-use ToolCli\Command\Php\Password\PhpHashRevertController;
-use ToolCli\Command\Php\PhpUrlController;
+use ToolCli\Context\Demo\Command\DemoArgumentCommand;
+use ToolCli\Context\Demo\Command\DemoChoiceCommand;
+use ToolCli\Context\Demo\Command\DemoCommand;
+use ToolCli\Context\Demo\Command\DemoInputCommand;
+use ToolCli\Context\Git\Flow\Command\GitFlowCommand;
+use ToolCli\Context\Git\Flow\Command\GitFlowFeatureCommand;
+use ToolCli\Context\Git\Flow\Command\GitFlowHotfixCommand;
+use ToolCli\Context\Git\Flow\Command\GitFlowReleaseCommand;
+use ToolCli\Context\Php\Command\Password\PhpHashCommand;
+use ToolCli\Context\Php\Command\Password\PhpHashRevertCommand;
+use ToolCli\Context\Php\Command\PhpUrlCommand;
+use ToolCli\Context\Symfony\Crud\Command\SymfonyCrudCommand;
+use ToolCli\Core\Command\HelloCommand;
 
 $application = new Application();
 
@@ -29,8 +30,9 @@ $application->add(new DemoChoiceCommand());
 $application->add(new GitFlowFeatureCommand());
 $application->add(new GitFlowReleaseCommand());
 $application->add(new GitFlowHotfixCommand());
-$application->add(new PhpHashController());
-$application->add(new PhpHashRevertController());
-$application->add(new PhpUrlController());
+$application->add(new PhpHashCommand());
+$application->add(new PhpHashRevertCommand());
+$application->add(new PhpUrlCommand());
+$application->add(new SymfonyCrudCommand());
 
 $application->run();

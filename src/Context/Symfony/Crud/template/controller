@@ -1,0 +1,112 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\<%capitalName%>;
+use App\Form\<%capitalName%>Type;
+use App\Repository\<%capitalName%>Repository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
+use function array_slice;
+use function count;
+
+#[Route('/<%minimalName%>')]
+class <%controllerFileName%> extends AbstractController
+{
+    private const PER_PAGE = 10;
+    private const ORDER = 'id';
+    private const SORT = 'asc';
+    private const COLUMNS = [
+<%attributes%>
+        ];
+    #[Route('/{page<\d+>}', name: 'app_<%minimalName%>', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
+    public function index(
+        <%capitalName%>Repository $<%minimalName%>Repository,
+        Request $request,
+        int $page = 1
+    ): Response {
+        $order = $request->query->get('order') !== null ? $request->query->get('order') : $this::ORDER;
+        $sort = $request->query->get('sort') !== null ? $request->query->get('sort') : $this::SORT;
+        $<%minimalName%>s = $<%minimalName%>Repository->findBy([], [$order => $sort]);
+        $pages = ceil(count($<%minimalName%>s) / self::PER_PAGE);
+        if ($pages > 0 && ($page < 1 || $page > $pages)) {
+            throw $this->createNotFoundException('Page not found');
+        }
+        $results = array_slice($<%minimalName%>s, ($page - 1) * self::PER_PAGE, self::PER_PAGE);
+
+        return $this->render('<%minimalName%>/index.html.twig', [
+            '<%minimalName%>s' => $<%minimalName%>Repository->findAll(),
+            'results' => $results,
+            'columns' => $this::COLUMNS,
+            'page' => $page,
+            'pages' => $pages,
+            'order' => $order,
+            'sort' => $sort,
+        ]);
+    }
+
+    #[Route('/new', name: 'app_<%minimalName%>_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $<%minimalName%> = new <%capitalName%>();
+        $form = $this->createForm(<%capitalName%>Type::class, $<%minimalName%>);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($<%minimalName%>);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_<%minimalName%>', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('<%minimalName%>/new.html.twig', [
+            '<%minimalName%>' => $<%minimalName%>,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/show/{id}', name: 'app_<%minimalName%>_show', methods: ['GET'])]
+    public function show(<%capitalName%> $<%minimalName%>): Response
+    {
+        return $this->render('<%minimalName%>/show.html.twig', [
+            '<%minimalName%>' => $<%minimalName%>,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_<%minimalName%>_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, <%capitalName%> $<%minimalName%>, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(<%capitalName%>Type::class, $<%minimalName%>);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_<%minimalName%>', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('<%minimalName%>/edit.html.twig', [
+            '<%minimalName%>' => $<%minimalName%>,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_<%minimalName%>_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_PRODUCT')]
+    public function delete(Request $request, <%capitalName%> $<%minimalName%>, EntityManagerInterface $entityManager): Response
+    {
+        if (
+            $this->isCsrfTokenValid('delete' . $<%minimalName%>->getId(), $request->getPayload()->getString('_token'))
+        ) {
+            $entityManager->remove($<%minimalName%>);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('app_<%minimalName%>', [], Response::HTTP_SEE_OTHER);
+    }
+}

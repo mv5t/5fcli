@@ -1,6 +1,6 @@
 <?php
 
-namespace ToolCli\Command\Git\Flow;
+namespace ToolCli\Context\Git\Flow\Command;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

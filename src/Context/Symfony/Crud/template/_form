@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-12">
+<%attributes%>
+    </div>
+</div>
+<div class="d-flex justify-content-between">
+    <a href="{{ path('app_<%minimalName%>') }}" class="btn btn-secondary">Retour</a>
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+</div>
+
+{{ form_end(form) }}

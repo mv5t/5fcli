@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier <%capitalName%>{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Modifier <%capitalName%></h1>
+
+            {{ include('<%minimalName%>/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
